@@ -1,0 +1,110 @@
+C_S dasar = 20 x 0.2638 + 3 = 8.28
+
+[Tabel 3] per 1.000 mesin-tahun (Se=0,85; Sp=0,90)
+  rendah    MTBF= 32.1 p=0.0307 TP=  26.1 FN=  4.6 FP= 96.9 TN= 872.4 PPV=0.2120
+  menengah  MTBF= 10.0 p=0.0952 TP=  80.9 FN= 14.3 FP= 90.5 TN= 814.4 PPV=0.4720
+  tinggi    MTBF=  4.0 p=0.2212 TP= 188.0 FN= 33.2 FP= 77.9 TN= 700.9 PPV=0.7071
+
+[Tabel 4] skenario dasar
+  rendah    C_RTF=  3.07 C_PdM=  9.46 B(d=0)= -6.39 Br(d=0,5)= -7.21 Br(d=1)= -8.03 CF*= 345.0 Sp_min(d=0)=4.20
+  menengah  C_RTF=  9.52 C_PdM= 11.51 B(d=0)= -1.99 Br(d=0,5)= -3.70 Br(d=1)= -5.41 CF*= 124.6 Sp_min(d=0)=2.00
+  tinggi    C_RTF= 22.12 C_PdM= 15.51 B(d=0)= +6.61 Br(d=0,5)= +4.40 Br(d=1)= +2.20 CF*=  64.9 Sp_min(d=0)=-3.34
+
+[C_F* menurut delta] skenario dasar (ambang biaya kegagalan, juta Rp)
+  rendah    345.0; 556.4; 1553.5
+  menengah  124.6; 162.1; 241.6
+  tinggi    64.9; 72.6; 83.5
+
+[Titik impas p*] skenario dasar
+  delta=0.0: kuadrat 51.15p^2 +0.46p -0.848 = 0 -> p*=0.1243 (numerik 0.1243; MTBF*=7.53 th; substitusi B_r=-1.8e-15)
+  delta=0.5: kuadrat 54.55p^2 -2.94p -0.848 = 0 -> p*=0.1545 (numerik 0.1545; MTBF*=5.96 th; substitusi B_r=0.0e+00)
+  delta=1.0: kuadrat 57.95p^2 -6.34p -0.848 = 0 -> p*=0.1875 (numerik 0.1875; MTBF*=4.82 th; substitusi B_r=0.0e+00)
+  Persamaan 7 (delta=0): 0.1243
+
+[Sp minimum kelas tinggi]
+  delta=0.5: Sp_min = 0.2778
+  delta=1.0: Sp_min = 0.8174
+
+[Kanal alarm palsu] kelas tinggi, Sp 0,98 -> 0,80, parameter lain = dasar
+  delta=0.0: B_r 6.73 -> 6.45 (turun 0.28)
+  delta=1.0: B_r 5.58 -> -0.37 (turun 5.94)
+  biaya investigasi tambahan = 0.28; kanal tidak langsung (delta=1) = 5.66; PPV 0.923 -> 0.547
+
+[Tabel 5] skenario (delta: konservatif=1, dasar=0,5, optimistis=0)
+  konservatif rendah= -17.12 menengah= -16.73 tinggi= -15.39 p*=tidak ada
+  dasar       rendah=  -7.21 menengah=  -3.70 tinggi=  +4.40 p*=0.1545
+  optimistis  rendah=  +1.24 menengah= +12.26 tinggi= +33.82 p*=0.0234
+
+[Tornado] kelas menengah, basis B_r (delta=0,5), satu parameter diubah
+  basis = -3.70
+  CS     batas bawah= +0.58 batas atas=-11.42 ayunan=12.00
+  p      batas bawah= -7.21 batas atas= +4.40 ayunan=11.61
+  CF     batas bawah= -7.27 batas atas= +2.26 ayunan= 9.53
+  delta  batas bawah= -1.99 batas atas= -5.41 ayunan= 3.42
+  Sp     batas bawah= -4.41 batas atas= -2.44 ayunan= 1.97
+  Se     batas bawah= -4.67 batas atas= -3.04 ayunan= 1.63
+  CP     batas bawah= -3.10 batas atas= -4.29 ayunan= 1.19
+  CI     batas bawah= -3.56 batas atas= -4.06 ayunan= 0.50
+
+[Weibull] rata-rata umur 10 tahun, ambang p* (delta=0)
+  beta=1.0: eta=10.00 th; umur saat p bersyarat = p*: tidak tercapai
+  beta=2.0: eta=11.28 th; umur saat p bersyarat = p*: 7.95
+  beta=3.0: eta=11.20 th; umur saat p bersyarat = p*: 7.38
+
+[Kegagalan per 100 mesin-tahun] skenario dasar
+  rendah    RTF=  3.1 dicegah PdM (d=0;0,5;1)=2.6;1.6;0.6 alarm palsu=9.7
+  menengah  RTF=  9.5 dicegah PdM (d=0;0,5;1)=8.1;6.0;3.8 alarm palsu=9.0
+  tinggi    RTF= 22.1 dicegah PdM (d=0;0,5;1)=18.8;16.0;13.3 alarm palsu=7.8
+
+[Analisis probabilistik] N=100000, seed=2026, input saling bebas
+  rendah    median= -8.08 P5=-12.80 P95= -4.23 layak=2/100000 (0.00%)
+  menengah  median= -4.31 P5= -9.87 P95= +1.47 layak=10967/100000 (10.97%)
+  tinggi    median= +4.49 P5= -4.46 P95=+15.66 layak=77662/100000 (77.66%)
+
+[Verifikasi Monte Carlo] N=4000000 per kelas, seed=2026
+  rendah    delta=0.0: analitik=-6.388 MC=-6.388 galat baku=0.006
+  rendah    delta=0.5: analitik=-7.210 MC=-7.214 galat baku=0.005
+  rendah    delta=1.0: analitik=-8.032 MC=-8.038 galat baku=0.003
+  menengah  delta=0.0: analitik=-1.990 MC=-1.995 galat baku=0.011
+  menengah  delta=0.5: analitik=-3.698 MC=-3.706 galat baku=0.009
+  menengah  delta=1.0: analitik=-5.407 MC=-5.411 galat baku=0.008
+  tinggi    delta=0.0: analitik=+6.606 MC=+6.582 galat baku=0.016
+  tinggi    delta=0.5: analitik=+4.403 MC=+4.383 galat baku=0.015
+  tinggi    delta=1.0: analitik=+2.200 MC=+2.175 galat baku=0.014
+  rendah    EVPI=0.000 EVPPI: Se=0.000 Sp=0.000 CF=0.000 CP=0.000 CI=0.000 CS=0.000 delta=0.000
+  menengah  EVPI=0.187 EVPPI: Se=0.000 Sp=0.000 CF=0.001 CP=0.000 CI=0.000 CS=0.011 delta=0.000
+  tinggi    EVPI=0.644 EVPPI: Se=0.000 Sp=0.000 CF=0.397 CP=0.000 CI=0.000 CS=0.013 delta=0.000
+
+[Subbab 4.4] Ambang alarm optimal, ROC binormal, d'=2.318
+  rendah    delta=0.0 t*=1.057 Se*=0.896 Sp*=0.855 PPV*=0.163 r*=1.000 B*=-6.36 B(ambang dasar)=-6.39
+  rendah    delta=0.5 t*=1.664 Se*=0.744 Sp*=0.952 PPV*=0.329 r*=0.664 B*=-7.16 B(ambang dasar)=-7.21
+  rendah    delta=1.0 t*=2.320 Se*=0.499 Sp*=0.990 PPV*=0.608 r*=0.608 B*=-7.55 B(ambang dasar)=-8.03
+  menengah  delta=0.0 t*=0.539 Se*=0.962 Sp*=0.705 PPV*=0.256 r*=1.000 B*=-1.49 B(ambang dasar)=-1.99
+  menengah  delta=0.5 t*=1.381 Se*=0.826 Sp*=0.916 PPV*=0.509 r*=0.755 B*=-3.69 B(ambang dasar)=-3.70
+  menengah  delta=1.0 t*=1.888 Se*=0.666 Sp*=0.971 PPV*=0.704 r*=0.704 B*=-4.76 B(ambang dasar)=-5.41
+  tinggi    delta=0.0 t*=0.111 Se*=0.986 Sp*=0.544 PPV*=0.381 r*=1.000 B*=+8.46 B(ambang dasar)=+6.61
+  tinggi    delta=0.5 t*=1.111 Se*=0.886 Sp*=0.867 PPV*=0.654 r*=0.827 B*=+4.48 B(ambang dasar)=+4.40
+  tinggi    delta=1.0 t*=1.525 Se*=0.786 Sp*=0.936 PPV*=0.778 r*=0.778 B*=+2.45 B(ambang dasar)=+2.20
+  Kelas tinggi, ambang disetel untuk delta tertentu (baris) vs delta aktual:
+  disetel delta=0.0: +8.46 +3.06 -2.35
+  disetel delta=0.5: +7.20 +4.48 +1.77
+  disetel delta=1.0: +5.53 +3.99 +2.45
+  d'=1.5: B maksimum kelas tinggi pada delta=1: -1.76
+  d'=3.0: B maksimum kelas tinggi pada delta=1: +5.38
+
+[Subbab 4.2] Pompa 11-PA-7131A: p=0.950 PPV=0.994 B (delta 0; 0,5; 1)=+56.32; +56.13; +55.93
+
+[Lampiran 9A dan 9B] Efektivitas tindakan eps dan kejadian berulang
+  rendah    delta=0.0 eps*=3.450 eps*(lambda)=3.400 B(eps 0,70;0,85;1)=-7.17;-6.78;-6.39 gabungan=-7.15;-6.75;-6.36
+  rendah    delta=0.5 eps*=5.564 eps*(lambda)=5.481 B(eps 0,70;0,85;1)=-7.68;-7.45;-7.21 gabungan=-7.67;-7.43;-7.19
+  rendah    delta=1.0 eps*=15.535 eps*(lambda)=15.299 B(eps 0,70;0,85;1)=-8.20;-8.11;-8.03 gabungan=-8.19;-8.11;-8.02
+  menengah  delta=0.0 eps*=1.246 eps*(lambda)=1.195 B(eps 0,70;0,85;1)=-4.42;-3.20;-1.99 gabungan=-4.21;-2.94;-1.66
+  menengah  delta=0.5 eps*=1.621 eps*(lambda)=1.552 B(eps 0,70;0,85;1)=-5.48;-4.59;-3.70 gabungan=-5.33;-4.39;-3.46
+  menengah  delta=1.0 eps*=2.416 eps*(lambda)=2.309 B(eps 0,70;0,85;1)=-6.55;-5.98;-5.41 gabungan=-6.45;-5.85;-5.25
+  tinggi    delta=0.0 eps*=0.649 eps*(lambda)=0.597 B(eps 0,70;0,85;1)=+0.97;+3.79;+6.61 gabungan=+2.19;+5.38;+8.56
+  tinggi    delta=0.5 eps*=0.726 eps*(lambda)=0.665 B(eps 0,70;0,85;1)=-0.41;+2.00;+4.40 gabungan=+0.63;+3.35;+6.07
+  tinggi    delta=1.0 eps*=0.835 eps*(lambda)=0.761 B(eps 0,70;0,85;1)=-1.79;+0.21;+2.20 gabungan=-0.92;+1.33;+3.59
+
+[Uji properti] 7 uji kasus batas lulus
+
+[Pemeriksaan otomatis] 37 angka kunci cocok dengan naskah; selisih Monte Carlo maksimum 2.2 galat baku
